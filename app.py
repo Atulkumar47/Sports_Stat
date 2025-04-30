@@ -8,7 +8,7 @@ import pandas as pd
 # Load data
 @st.cache_data
 def load_data():
-    return pd.read_excel("sports_data.xlsx")
+    return pd.read_csv("sports_data.csv")
 
 # Configure page
 st.set_page_config(page_title="BasketballStatsExplorer", layout="wide")
