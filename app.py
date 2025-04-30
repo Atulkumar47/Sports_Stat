@@ -8,7 +8,22 @@ import pandas as pd
 # Load data
 @st.cache_data
 def load_data():
-    return pd.read_csv("sports_data.csv")
+    try:
+        df = pd.read_csv("sports_data.csv")
+        st.success("✅ Data loaded")
+        return df
+    except Exception as e:
+        st.error(f"❌ Could not load CSV: {e}")
+        return pd.DataFrame()
+@st.cache_resource
+def load_model():
+    try:
+        model = joblib.load("sports_model.pkl")
+        st.success("✅ Model loaded")
+        return model
+    except Exception as e:
+        st.error(f"❌ Could not load model: {e}")
+        return None
 
 # Configure page
 st.set_page_config(page_title="BasketballStatsExplorer", layout="wide")
